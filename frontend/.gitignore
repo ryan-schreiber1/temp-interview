@@ -1,0 +1,11 @@
+# Frontend .gitignore - missing some important entries that a junior might forget
+node_modules/
+build/
+.env
+.env.local
+
+# Missing:
+# *.log
+# .DS_Store  
+# coverage/
+# .nyc_output/

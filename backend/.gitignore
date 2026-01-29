@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+users.db
+*.pyo  
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+.coverage

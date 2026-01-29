@@ -1,0 +1,10 @@
+# Missing .dockerignore - junior engineer oversight
+# This should exclude unnecessary files from Docker context
+
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
