@@ -1,6 +1,5 @@
 name: Build and Deploy
 
-# Too broad trigger - junior engineer mistake
 on:
   push:
     branches: [ main, develop, feature/* ]
