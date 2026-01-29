@@ -20,6 +20,7 @@ DB_PATH = "users.db"
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY,
@@ -27,6 +28,16 @@ def init_db():
             email TEXT NOT NULL
         )
     ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users_roles (
+            user_id TEXT NOT NULL,
+            role TEXT NOT NULL,
+            PRIMARY KEY (user_id, role),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )
+    ''')
+    
     conn.commit()
     conn.close()
 
@@ -61,10 +72,12 @@ def create_user(user: User):
 
 @app.delete("/users/{user_id}")
 def delete_user(user_id: str):
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, isolation_level=None)  # autocommit
     cursor = conn.cursor()
+
     cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
-    conn.commit()
+    cursor.execute("DELETE FROM users_roles WHERE id = ?", (user_id,))
+
     conn.close()
     return {"message": "User deleted"}
 
