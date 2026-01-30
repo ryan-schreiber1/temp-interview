@@ -6,6 +6,7 @@ import uuid
 
 app = FastAPI()
 
+
 class User(BaseModel):
     name: str
     email: str
