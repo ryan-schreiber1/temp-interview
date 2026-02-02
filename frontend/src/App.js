@@ -13,13 +13,11 @@ function App() {
     fetchUsers();
   }, []);
 
-  
   const fetchUsers = async () => {
     const response = await axios.get(`${API_BASE}/users`);
     setUsers(response.data);
   };
 
-  
   const addUser = async (e) => {
     e.preventDefault();
     
